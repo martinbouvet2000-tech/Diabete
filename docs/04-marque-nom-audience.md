@@ -32,8 +32,11 @@
 | **Marc, 54 ans, T2 diagnostiqué il y a 2 mois** | Metformine, un peu perdu, peu technophile | Panique d'information : « qu'est-ce que je peux manger ? » | Kit 90 jours, articles simples, app à gros boutons sans jargon |
 | **Sophie, 41 ans, maman d'Enzo 8 ans (T1)** | Gère la maladie de son fils, cantine, école, nuits | Peur permanente + organisation familiale | Guides pratiques (école, PAI, anniversaires), communauté de parents |
 | **Karim, 35 ans, prédiabète** | Prévenu par son médecin du travail, motivé par à-coups | Ne se sent pas « malade », ne sait pas par où commencer | Contenu prévention sans dramatisation ; c'est la cible des futurs contrats mutuelles |
+| **Julien, 26 ans, fils de Marc (T2)** — *persona miroir du fondateur* | S'inquiète pour son père, vit parfois loin, cherche comment aider | Impuissance + peur des complications + « comment en parler sans le braquer » | Guides aidants (aider sans faire la morale), articles prévention (pieds, yeux) à partager, kit 90 jours à offrir, recettes familiales chiffrées |
 
 Règle d'or : chaque contenu, chaque écran doit servir au moins un persona identifié — sinon on ne le fait pas.
+
+**Histoire fondatrice** : le projet est porté par un proche aidant — un parent direct du fondateur vit avec un diabète de type 2. C'est la voix de la marque (voir [07-validation-hypotheses.md](07-validation-hypotheses.md) §5, avec la règle de consentement : l'histoire du parent n'est racontée publiquement qu'avec son accord et dans ses termes).
 
 ## 3. Ton éditorial
 

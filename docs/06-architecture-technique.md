@@ -88,7 +88,24 @@ Conversions : 1 g/L = 100 mg/dL ; 1 mmol/L = 18 mg/dL. La France affiche g/L par
 - Alternatives : Vercel/Cloudflare Pages (mêmes commandes ; formulaires à brancher sur Brevo directement).
 - Domaine : à acheter après validation du nom ([04-marque-nom-audience.md](04-marque-nom-audience.md)) ; mettre à jour `siteUrl` dans `site/config.mjs`.
 
-## 9. Qualité
+## 9. Écosystème & intégrations (veille intégrée, revue août 2026)
+
+Synthèse d'une revue externe des ressources disponibles, avec notre position :
+
+| Ressource | Ce que c'est | Notre position |
+|---|---|---|
+| **Open Food Facts** | Base collaborative, 3 M+ produits, forte en France | ✅ **Intégré en v0** (scan). Limite connue : données contributives, valeurs parfois manquantes — l'UI invite toujours à vérifier l'étiquette |
+| **Table Ciqual (ANSES)** | Référence officielle française des aliments bruts et plats | ✅ Prévu v0.x : import complet via script (notre base de 207 aliments curés est l'intérim). Fiabilité maximale pour le fait-maison |
+| **Nightscout** | Projet open source de référence de la communauté DIY : agrégation temps réel des capteurs, tableau de bord partageable | 🔭 v2 : proposer l'import/affichage des données Nightscout est un signal de crédibilité fort auprès des T1 technophiles (nos prescripteurs). Pas en v0 : exige un hébergement par l'utilisateur et du support |
+| **Tidepool** | Plateforme à but non lucratif, format de données diabète standardisé, validée cliniquement | 🔭 v2+ : leur modèle de données est la référence à suivre pour notre format d'export/sync — l'adopter tôt évite une migration |
+| **APIs photo-vers-nutrition (LogMeal, Passio…)** | Reconnaissance d'aliments par vision, payantes | Alternative à notre plan « LLM vision » pour la photo IA (v1, gate G1). À benchmarker le moment venu ; la règle de non-dérive ([07](07-validation-hypotheses.md) §4) s'applique quel que soit le fournisseur |
+| **Web Speech API (saisie vocale)** | Dicter au lieu de taper — pertinent pour la neuropathie des doigts | ⚠️ Nuance : les claviers iOS/Android intègrent déjà la dictée dans tous nos champs (elle marche dès la v0, gratuitement). Un vrai parcours « je dis mon repas, l'app calcule » = interprétation de phrase, prévu v1 si les tests utilisateurs le réclament |
+| **Next.js + Tailwind + Supabase** | Stack généraliste souvent recommandée | Notre trajectoire diffère **volontairement** : v0 zéro dépendance livrée et testée ; pour la v1, Supabase *cloud* n'est pas certifié HDS → auto-hébergement sur infra HDS ou backend dédié (§2), point que les recommandations généralistes ignorent systématiquement |
+| **Références médicales : SFD, Fédération Française des Diabétiques, ADA** | Recommandations cliniques et fiches patients | Sources officielles de nos contenus (avec Ameli/HAS) ; la SFD est la référence à citer pour tout contenu « pied diabétique » et objectifs de suivi |
+
+**Accessibilité renforcée (appliqué en v0)** : cibles tactiles agrandies et mode « texte plus grand » persistant dans les Réglages — la neuropathie touche aussi les doigts, et la rétinopathie la vue ; c'est un critère produit de premier rang pour notre cible T2 senior, pas une finition.
+
+## 10. Qualité
 
 - Build reproductible : `node site/build.mjs` (Node ≥ 18, rien d'autre).
 - Vérification syntaxe JS : `node site/check.mjs` (contrôle tous les modules + validité du JSON aliments).

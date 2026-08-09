@@ -46,22 +46,25 @@ La revue a raison : la pression produit poussera vers « toujours plus personnal
 3. Wording verrouillé : « estimation des glucides de ce plat », jamais « pour votre dose/bolus » — stores et marketing inclus (destination revendiquée, [02-reglementation.md](02-reglementation.md) §2).
 4. Toute évolution de cette feature passe la checklist réglementaire **avant** développement, et la réponse est écrite dans ce dépôt (traçabilité pré-DM).
 
-## 5. « Qui incarne la marque » — question désormais bloquante
+## 5. « Qui incarne la marque » — ✅ TRANCHÉ : proche aidant
 
-Une marque de confiance santé sans visage légitime perd l'essentiel de sa force. Trois configurations possibles, à trancher avant G1 :
+**Décision (août 2026)** : le fondateur est **proche aidant** — un parent direct vit avec un diabète de type 2. La légitimité est native : le projet est né d'une histoire familiale réelle, pas d'une opportunité de marché.
 
-| Configuration | Condition | Conséquence |
-|---|---|---|
-| Le porteur est concerné (ou proche aidant) | La légitimité est native | Il devient la voix (newsletter signée, vidéos) |
-| Porteur non concerné + **co-fondateur/ambassadeur patient** | Trouver la bonne personne via les interviews et la communauté (c'est aussi à ça qu'elles servent) | Partage de la lumière et, selon l'engagement, du capital |
-| Porteur non concerné, seul | Transparence radicale : « je construis avec vous, voici pourquoi » + comité patients visible + relecteurs médicaux nommés | Ton plus humble ; la communauté incarne, pas le fondateur |
+Conséquences opérationnelles :
 
-La pire option — prétendre une proximité qu'on n'a pas — est interdite : en santé, ça se voit, et ça ne pardonne pas.
+1. **La voix de la marque** : le fondateur signe la newsletter et raconte le « pourquoi » à la première personne (« je construis ça pour mon père, et pour tous les autres »). C'est l'archétype le plus universel du marché T2 : des millions d'enfants adultes s'inquiètent pour un parent.
+2. **Règle de consentement** : l'histoire du parent lui appartient. Elle n'est racontée publiquement que dans les termes qu'il approuve, avec son accord explicite — et elle est plus forte ainsi (idéalement : il participe). Aucun détail médical d'un tiers ne figure dans ce dépôt ni dans la communication sans cet accord.
+3. **Garde-fou éditorial de l'aidant** : construire pour un proche donne un carburant immense et un biais connu — vouloir « convaincre » les patients. Notre ton l'interdit ([04-marque-nom-audience.md](04-marque-nom-audience.md) §3) : l'app et les contenus rendent le bon choix facile, ils ne font jamais la morale. Un parent n'a pas besoin d'une app qui le surveille ; il a besoin d'outils qui lui simplifient la vie.
+4. **La cible s'enrichit** : les **aidants familiaux** (conjoint·es, enfants adultes) deviennent un persona central — voir le persona « Julien » ([04-marque-nom-audience.md](04-marque-nom-audience.md) §2) et les clusters « Corps & prévention » et « Aidants & famille » ([05-plan-contenu-seo.md](05-plan-contenu-seo.md)).
+5. **Interviews (H2)** : sur les 5 entretiens, inclure au moins 1 aidant familial d'un parent T2 en plus des personnes diabétiques elles-mêmes.
+
+Rappel maintenu : prétendre une proximité qu'on n'a pas est interdit — ici, la proximité est réelle, c'est l'actif le plus précieux du projet.
 
 ## 6. Tableau de bord de validation (à tenir à jour ici)
 
 | Date | Jalon | Résultat | Décision |
 |---|---|---|---|
-| — | 5 interviews réalisées | à venir | — |
+| 2026-08 | Incarnation de la marque | Fondateur proche aidant (parent T2) | ✅ Configuration « proche aidant » actée (§5) — condition d'incarnation de G1 levée |
+| — | 5 interviews réalisées (dont ≥ 1 aidant familial) | à venir | — |
 | — | Landing en ligne + 30 jours de mesure | à venir | — |
 | — | v0 testée par 10 utilisateurs | à venir | — |

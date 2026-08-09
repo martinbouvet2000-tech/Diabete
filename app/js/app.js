@@ -445,6 +445,11 @@ function initEvenements() {
   // Réglages
   $('#select-unite').value = getPrefs().unite
   $('#select-unite').addEventListener('change', () => { setPref('unite', $('#select-unite').value); rendreJournal() })
+  $('#check-texte-grand').checked = getPrefs().texteGrand
+  $('#check-texte-grand').addEventListener('change', () => {
+    setPref('texteGrand', $('#check-texte-grand').checked)
+    document.documentElement.classList.toggle('texte-grand', $('#check-texte-grand').checked)
+  })
   $('#btn-export').addEventListener('click', exporterJSON)
   $('#input-import').addEventListener('change', (ev) => { if (ev.target.files[0]) importerJSON(ev.target.files[0]); ev.target.value = '' })
   $('#btn-effacer').addEventListener('click', async () => {
@@ -465,6 +470,7 @@ function initEvenements() {
 
 async function init() {
   $('#version').textContent = `v${VERSION}`
+  document.documentElement.classList.toggle('texte-grand', getPrefs().texteGrand)
   initEvenements()
   if (!getPrefs().bienvenueVue) {
     $('#dlg-bienvenue').showModal()

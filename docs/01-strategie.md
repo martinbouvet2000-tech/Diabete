@@ -64,7 +64,7 @@ Classement par fréquence × intensité, issu des récurrences dans les communau
 | Levels, Nutrisense | CGM bien-être pour non-diabétiques, abonnements chers | Autre cible (biohackers) ; valident que « glycémie + nutrition + abonnement » se vend |
 | Virta, Omada, Livongo/Teladoc | Programmes T2 B2B2C (US) | Modèle à répliquer en France **plus tard** ; personne ne l'a fait sérieusement en francophone |
 | Diabeloop (FR) | Boucle fermée (pancréas artificiel) | Pur DM classe haute, pas notre terrain |
-| Fédération Française des Diabétiques (AFD), AJD | Association, information, plaidoyer | Partenaire potentiel, pas un concurrent produit |
+| Fédération Française des Diabétiques (FFD), AJD | Association, information, plaidoyer | Partenaire potentiel, pas un concurrent produit |
 | Groupes Facebook, forums, créateurs T1 sur Instagram/TikTok | La vraie « communauté » actuelle | Non structurés, non monétisés, pas de produit — c'est l'audience qu'on va fédérer mieux qu'eux |
 
 **Synthèse** : le marché est paradoxal — saturé en apps « carnet de glycémie », désert sur le quotidien francophone. La fenêtre est ouverte.

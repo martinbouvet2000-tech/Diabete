@@ -25,7 +25,7 @@ Le média (phase 1) ne s'arrête jamais : c'est le moteur d'acquisition permanen
 
 **Communauté** : commencer là où les gens sont (groupes existants : aider sincèrement, sans spam), puis ouvrir notre espace (groupe privé ou Discord) quand ~1 000 emails. Moments forts à exploiter : Journée mondiale du diabète (14 novembre), rentrée scolaire (parents d'enfants T1), janvier (résolutions T2).
 
-**Partenariats** : Fédération Française des Diabétiques (AFD) et Aide aux Jeunes Diabétiques (AJD) — proposer de la valeur d'abord (contenus, outils gratuits pour leurs antennes) ; créateurs T1 francophones sur Instagram/TikTok (collaborations encadrées, voir réglementation).
+**Partenariats** : Fédération Française des Diabétiques (FFD) et Aide aux Jeunes Diabétiques (AJD) — proposer de la valeur d'abord (contenus, outils gratuits pour leurs antennes) ; créateurs T1 francophones sur Instagram/TikTok (collaborations encadrées, voir réglementation).
 
 ## 3. Phase 2 — spécification du MVP de l'app
 

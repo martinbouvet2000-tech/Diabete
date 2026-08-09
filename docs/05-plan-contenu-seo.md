@@ -13,6 +13,8 @@ Le média est le moteur d'acquisition permanent (voir [01-strategie.md](01-strat
 | **Cuisine chiffrée** | recettes avec glucides comptés | petit-déj, gâteau anniversaire, menus semaine | P2 (volume énorme) |
 | **Sport & activité** | gérer l'effort | hypo sport, muscu, randonnée | P2 |
 | **Parents & école** | enfant T1 au quotidien | PAI école, cantine, colonies, baby-sitter | P2 (communauté très soudée) |
+| **Corps & prévention** | prendre soin de ce que le diabète fragilise | pieds, yeux, dents, peau, remboursements associés | 🔥 P1 (douleur T2 majeure, volume SEO fort) |
+| **Aidants & famille** | aider un proche diabétique sans le braquer | « mon père est diabétique », repas de famille, accompagner en consultation | 🔥 P1 (persona Julien — miroir du fondateur) |
 
 ## 2. Calendrier : 50 titres prêts à produire
 
@@ -20,7 +22,8 @@ Le média est le moteur d'acquisition permanent (voir [01-strategie.md](01-strat
 1. Voyager en avion avec de l'insuline : le guide complet
 2. Capteur qui se décolle : 12 solutions concrètes qui marchent
 3. Diabète au restaurant : la méthode simple pour en profiter
-4. Le kit de survie des 90 premiers jours (page guide / lead magnet)
+4. Pieds et diabète : pourquoi c'est sérieux, et comment bien s'en occuper
+5. Le kit de survie des 90 premiers jours (page guide / lead magnet)
 
 **File de production (2/semaine)** — titres validés par cluster :
 
@@ -38,12 +41,16 @@ Le média est le moteur d'acquisition permanent (voir [01-strategie.md](01-strat
 
 *Parents & école* : Le PAI expliqué aux parents · Cantine : travailler avec l'école · Anniversaires : le kit du parent serein · Confier son enfant T1 : baby-sitter, grands-parents · Colonies et séjours adaptés (AJD)
 
+*Corps & prévention* : Les yeux et le diabète : le rendez-vous à ne jamais sauter · Dents et gencives : le lien méconnu · La gradation podologique expliquée simplement (et ce qui est remboursé) · Bien choisir ses chaussures · Peau sèche, petites plaies : les bons réflexes · Le bilan annuel complet : la checklist des examens
+
+*Aidants & famille* : Mon père / ma mère est diabétique : aider sans braquer · Accompagner un parent à sa consultation (et quoi demander) · Cuisiner pour un parent T2 sans faire « régime » · Repas de famille : arrêter la police du sucre · Vivre loin d'un parent diabétique : l'organisation qui rassure · En parler aux petits-enfants
+
 ## 3. Standard de production (chaque article)
 
 - 1 200–2 000 mots, H2/H3 clairs, une checklist ou un tableau actionnable, FAQ finale (3 questions — vise les extraits enrichis).
 - Encadré systématique : « Cet article est informatif et ne remplace pas votre équipe soignante » + renvoi 15/112 quand pertinent.
 - Statut de relecture affiché : « Relecture médicale : en attente / relu par [Nom, titre] le [date] ». **Aucune promotion payante d'un article non relu.**
-- Sources citées en fin d'article (Ameli, HAS, AFD, fabricants pour le matériel).
+- Sources citées en fin d'article (Ameli, HAS, Société Francophone du Diabète pour le clinique, Fédération Française des Diabétiques pour le vécu patient, fabricants pour le matériel).
 - Métadonnées : title ≤ 60 car., description ≤ 155 car., une image (plus tard).
 
 ## 4. Distribution (chaque contenu vit 5 fois)
