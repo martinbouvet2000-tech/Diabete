@@ -2,7 +2,7 @@
 // Canonique interne : mg/dL. 1 g/L = 100 mg/dL ; 1 mmol/L = 18 mg/dL.
 const KEY = 'diavie.prefs'
 
-const defauts = { unite: 'gL', bienvenueVue: false, texteGrand: false }
+const defauts = { unite: 'gL', bienvenueVue: false, texteGrand: false, profil: 'decouverte' }
 
 export function getPrefs() {
   try {

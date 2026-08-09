@@ -31,6 +31,7 @@ Le média (phase 1) ne s'arrête jamais : c'est le moteur d'acquisition permanen
 
 ### User stories (V1)
 
+0. À mon arrivée, je **précise mon profil** (type 1, type 2, proche/parent, je découvre) et les contenus mis en avant s'adaptent — sans jamais m'enfermer. *(✅ implémenté dès la v0 : accueil app + Réglages + section « Par où commencer ? » du site + champ situation de la newsletter pour segmenter les emails.)*
 1. En tant qu'utilisateur, je **scanne un code-barres** et j'obtiens les glucides par portion réelle (base OpenFoodFacts).
 2. Je **cherche « raclette »** ou « couscous » et j'obtiens une estimation par portion française (table Ciqual ANSES + portions maison).
 3. Je **photographie mon assiette** et l'IA me propose une estimation des glucides, aliment par aliment, que je corrige en deux taps.
@@ -96,6 +97,8 @@ Principe intangible : **le nécessaire pour se suivre reste gratuit à vie** (é
 | Petite équipe financée | 80–150 k€ | Accélère les phases 2–3 d'environ 6 mois ; pertinent seulement une fois l'étage 1 validé |
 
 Aides mobilisables en France : statut JEI, Bourse French Tech, concours d'innovation santé, incubateurs santé (éligibilité à vérifier selon votre situation).
+
+**Scénario retenu (août 2026)** : temps disponible important, budget d'amorçage minimal — l'investissement financier est **indexé sur la traction**, gate par gate ([07-validation-hypotheses.md](07-validation-hypotheses.md) §3). Concrètement : phase 1 à ~0 € (hébergement statique gratuit, outils gratuits), premières dépenses (relecture juridique, dépôt de marque, relecture médicale des contenus) déclenchées par la validation de H1/H2, dépenses lourdes (HDS, freelances) déclenchées par G1.
 
 ## 8. Script d'interview (validation terrain — 5 entretiens minimum avant d'écrire du code)
 

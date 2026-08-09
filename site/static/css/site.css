@@ -101,6 +101,12 @@ h3 { font-size: 1.15rem; }
   padding: 12px 18px; border-radius: 999px; border: 1px solid var(--bord);
   font-size: 1rem; min-width: 280px; background: var(--blanc);
 }
+.newsletter select {
+  padding: 12px 18px; border-radius: 999px; border: 1px solid var(--bord);
+  font-size: 1rem; background: var(--blanc); color: var(--encre);
+}
+.liens-profil a { display: block; padding: 5px 0; font-weight: 600; text-decoration: none; }
+.liens-profil a:hover { text-decoration: underline; }
 .newsletter .rgpd { font-size: .85rem; color: var(--encre-douce); max-width: 520px; margin: 14px auto 0; }
 .hidden { display: none !important; }
 

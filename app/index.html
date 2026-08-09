@@ -39,6 +39,7 @@
     <div id="liste-entrees"></div>
     <button id="btn-voir-plus" class="btn-ghost hidden">Voir les 30 derniers jours</button>
     <p class="vide hidden" id="msg-vide">Votre journal est vide. Ajoutez votre premier repas ou votre première glycémie avec les boutons ci-dessus — ça prend 10 secondes, promis.</p>
+    <div id="guides-pour-vous" class="guides"></div>
   </section>
 
   <!-- ═══ Aliments ═══ -->
@@ -79,6 +80,17 @@
         <option value="mgdl">mg/dL</option>
         <option value="mmol">mmol/L (Belgique, Suisse, Canada)</option>
       </select>
+    </div>
+
+    <div class="bloc">
+      <h2>Votre profil</h2>
+      <select id="select-profil">
+        <option value="decouverte">Je découvre / autre</option>
+        <option value="t1">Diabète de type 1</option>
+        <option value="t2">Diabète de type 2</option>
+        <option value="proche">Proche / parent d'une personne diabétique</option>
+      </select>
+      <p class="sous-info">Adapte les guides mis en avant dans le journal. Cette information reste sur votre appareil.</p>
     </div>
 
     <div class="bloc">
@@ -129,7 +141,14 @@
     <li>⚕️ Diavie n'est <strong>pas un dispositif médical</strong> : aucune interprétation, aucun conseil de dose. Votre traitement, c'est avec votre équipe soignante.</li>
   </ul>
   <p class="sous-info">Pensez à exporter une sauvegarde de temps en temps (Réglages) : si les données du navigateur sont effacées, le journal l'est aussi.</p>
-  <div class="rangee-boutons"><button id="btn-bienvenue-ok" class="btn">C'est compris, on y va</button></div>
+  <p><strong>Pour adapter les guides mis en avant : vous êtes plutôt…</strong></p>
+  <div class="choix-profil">
+    <button data-profil="t1" class="btn-ghost">Diabète de type 1</button>
+    <button data-profil="t2" class="btn-ghost">Diabète de type 2</button>
+    <button data-profil="proche" class="btn-ghost">Proche / parent</button>
+    <button data-profil="decouverte" class="btn-ghost">Je découvre</button>
+  </div>
+  <p class="sous-info">Modifiable à tout moment dans les Réglages. Comme tout le reste : cette information ne quitte pas votre appareil.</p>
 </dialog>
 
 <dialog id="dlg-repas">

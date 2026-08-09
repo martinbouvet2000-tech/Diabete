@@ -10,6 +10,26 @@ const $ = (sel) => document.querySelector(sel)
 const MOMENTS = { 'petit-dej': 'Petit-déjeuner', dejeuner: 'Déjeuner', diner: 'Dîner', collation: 'Collation' }
 const CONTEXTES = { 'a-jeun': 'à jeun', 'avant-repas': 'avant repas', 'apres-repas': 'après repas', coucher: 'au coucher', autre: '' }
 
+// Guides du site mis en avant selon le profil (le média intégré à l'app)
+const GUIDES = {
+  t1: [
+    ['Capteur qui se décolle : 12 solutions concrètes', '/blog/capteur-qui-se-decolle/'],
+    ['Diabète au restaurant : la méthode simple', '/blog/diabete-au-restaurant/'],
+  ],
+  t2: [
+    ['Le kit des 90 premiers jours', '/kit-90-jours/'],
+    ["Pieds et diabète : bien s'en occuper", '/blog/pieds-et-diabete/'],
+  ],
+  proche: [
+    ["Aider sans surveiller : les pieds, mode d'emploi", '/blog/pieds-et-diabete/'],
+    ['Le kit des 90 premiers jours (à partager)', '/kit-90-jours/'],
+  ],
+  decouverte: [
+    ['Le kit des 90 premiers jours', '/kit-90-jours/'],
+    ['Diabète au restaurant : la méthode simple', '/blog/diabete-au-restaurant/'],
+  ],
+}
+
 let joursAffiches = 7
 let periodeStats = 7
 let repasItems = []
@@ -95,6 +115,13 @@ async function rendreJournal() {
     .join('')
   $('#msg-vide').classList.toggle('hidden', entrees.length > 0)
   $('#btn-voir-plus').classList.toggle('hidden', joursAffiches > 7)
+}
+
+function rendreGuides() {
+  const liens = GUIDES[getPrefs().profil] || GUIDES.decouverte
+  $('#guides-pour-vous').innerHTML =
+    `<h3>📚 Guides pour vous</h3>` +
+    liens.map(([titre, url]) => `<a href="${url}">${echapper(titre)} →</a>`).join('')
 }
 
 // ---------- Dialogue repas ----------
@@ -445,6 +472,8 @@ function initEvenements() {
   // Réglages
   $('#select-unite').value = getPrefs().unite
   $('#select-unite').addEventListener('change', () => { setPref('unite', $('#select-unite').value); rendreJournal() })
+  $('#select-profil').value = getPrefs().profil
+  $('#select-profil').addEventListener('change', () => { setPref('profil', $('#select-profil').value); rendreGuides() })
   $('#check-texte-grand').checked = getPrefs().texteGrand
   $('#check-texte-grand').addEventListener('change', () => {
     setPref('texteGrand', $('#check-texte-grand').checked)
@@ -474,8 +503,16 @@ async function init() {
   initEvenements()
   if (!getPrefs().bienvenueVue) {
     $('#dlg-bienvenue').showModal()
-    $('#btn-bienvenue-ok').addEventListener('click', () => { setPref('bienvenueVue', true); $('#dlg-bienvenue').close() })
+    for (const b of document.querySelectorAll('[data-profil]'))
+      b.addEventListener('click', () => {
+        setPref('profil', b.dataset.profil)
+        setPref('bienvenueVue', true)
+        $('#select-profil').value = b.dataset.profil
+        $('#dlg-bienvenue').close()
+        rendreGuides()
+      })
   }
+  rendreGuides()
   await rendreJournal()
   chargerAliments()
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {

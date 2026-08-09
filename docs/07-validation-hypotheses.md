@@ -65,6 +65,8 @@ Rappel maintenu : prétendre une proximité qu'on n'a pas est interdit — ici, 
 | Date | Jalon | Résultat | Décision |
 |---|---|---|---|
 | 2026-08 | Incarnation de la marque | Fondateur proche aidant (parent T2) | ✅ Configuration « proche aidant » actée (§5) — condition d'incarnation de G1 levée |
+| 2026-08 | Temps & budget (Q2) | Temps disponible important ; budget selon l'ampleur prise par le projet | ✅ Investissement indexé sur les gates : chaque euro suit une hypothèse validée ([03](03-roadmap-mvp.md) §7) |
+| 2026-08 | Cible (Q3) | « Viser grand sans s'éparpiller » — pas d'exclusion T1/T2 | ✅ Personnalisation par profil dès l'entrée (accueil app, « Par où commencer ? » site, segmentation newsletter) ; production éditoriale priorisée T2 + aidants |
 | — | 5 interviews réalisées (dont ≥ 1 aidant familial) | à venir | — |
 | — | Landing en ligne + 30 jours de mesure | à venir | — |
 | — | v0 testée par 10 utilisateurs | à venir | — |
