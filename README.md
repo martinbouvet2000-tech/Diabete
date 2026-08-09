@@ -1,8 +1,23 @@
-# Diabete — QG du projet
+# Diabete — QG du projet « Diavie »
 
 > **Vision** : quand quelqu'un vit avec le diabète en francophonie, notre marque doit être son réflexe quotidien — pas son médecin, pas son capteur : **son quotidien**.
 
-Ce dépôt est le quartier général du projet : stratégie, cadre réglementaire, roadmap produit. Le code viendra ensuite, sur des bases solides.
+Ce dépôt contient la stratégie complète **et la v0 fonctionnelle** : le site média avec ses premiers guides, et l'application locale (journal + glucides français). Nom de travail : « Diavie » (à vérifier INPI avant usage public — docs/04).
+
+## Démarrer en 30 secondes
+
+```bash
+node site/build.mjs     # construit le site + l'app dans site/dist/ (zéro dépendance, Node ≥ 18)
+node site/check.mjs     # vérifie la syntaxe JS et la base d'aliments
+npx serve site/dist     # ou n'importe quel serveur statique, pour tester en local
+```
+
+Déploiement : connecter le dépôt à **Netlify** (le `netlify.toml` fait tout : build, en-têtes de sécurité, formulaire newsletter via Netlify Forms). L'app est servie sur `/app/`, le site à la racine.
+
+## Ce qu'il y a dans la v0
+
+- **Site média** (`site/`) : landing avec capture email, le kit des 90 premiers jours, 3 guides complets (avion, capteur qui se décolle, restaurant), pages légales, sitemap/SEO — générateur statique maison sans dépendance.
+- **App locale** (`app/`) : journal (repas, glycémies, activité, notes), ~210 aliments français avec portions maison, scan de code-barres (Open Food Facts), stats descriptives, export/import JSON, rapport imprimable pour la consultation, PWA hors-ligne. **Les données restent sur l'appareil** — pas de compte, pas de serveur, pas de contrainte HDS en v0 (docs/06).
 
 ## TL;DR de la stratégie
 
@@ -19,6 +34,10 @@ Ce dépôt est le quartier général du projet : stratégie, cadre réglementair
 | [docs/01-strategie.md](docs/01-strategie.md) | Marché, douleurs du quotidien, concurrence, 7 angles évalués, recommandation, séquence « empire », modèle économique |
 | [docs/02-reglementation.md](docs/02-reglementation.md) | Les lignes rouges : dispositif médical (MDR), données de santé (RGPD/HDS), allégations, responsabilité |
 | [docs/03-roadmap-mvp.md](docs/03-roadmap-mvp.md) | Phases, spécification du MVP, stack technique, KPIs, budget, plan des 7 premiers jours, script d'interviews |
+| [docs/04-marque-nom-audience.md](docs/04-marque-nom-audience.md) | Nom de travail « Diavie », candidats, personas, ton éditorial, identité visuelle |
+| [docs/05-plan-contenu-seo.md](docs/05-plan-contenu-seo.md) | 7 clusters, 50 titres prêts à produire, standard de production, distribution, newsletter |
+| [docs/06-architecture-technique.md](docs/06-architecture-technique.md) | Décision v0 local-first, trajectoire v0→v3, modèle de données, sécurité, déploiement |
+| [docs/07-validation-hypotheses.md](docs/07-validation-hypotheses.md) | Hypothèses H1–H6 avec seuils et critères d'abandon, gates G1–G3, règle de non-dérive de la photo IA |
 
 ## Prochaines actions (7 jours)
 

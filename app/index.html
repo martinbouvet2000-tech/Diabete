@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Diavie — journal & glucides</title>
+  <meta name="description" content="Journal privé et glucides des plats français. Vos données restent sur votre appareil.">
+  <meta name="theme-color" content="#FAF7F2">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand"><img src="icons/icon.svg" alt="" width="26" height="26"><span>Diavie</span></div>
+  <span class="badge-prive" title="Aucune donnée n'est envoyée sur un serveur">🔒 Données sur cet appareil</span>
+</header>
+
+<main id="main">
+
+  <!-- ═══ Journal ═══ -->
+  <section id="view-journal" class="view">
+    <div class="jour-resume">
+      <div>
+        <h1 id="titre-jour">Aujourd'hui</h1>
+        <p class="sous-info" id="resume-jour">Aucune saisie pour l'instant</p>
+      </div>
+      <div class="total-glucides"><span id="total-jour">0</span><small>g de glucides</small></div>
+    </div>
+
+    <div class="actions-rapides">
+      <button class="btn-action" data-add="repas">🍽️<span>Repas</span></button>
+      <button class="btn-action" data-add="glycemie">🩸<span>Glycémie</span></button>
+      <button class="btn-action" data-add="activite">🏃<span>Activité</span></button>
+      <button class="btn-action" data-add="note">📝<span>Note</span></button>
+    </div>
+
+    <div id="liste-entrees"></div>
+    <button id="btn-voir-plus" class="btn-ghost hidden">Voir les 30 derniers jours</button>
+    <p class="vide hidden" id="msg-vide">Votre journal est vide. Ajoutez votre premier repas ou votre première glycémie avec les boutons ci-dessus — ça prend 10 secondes, promis.</p>
+  </section>
+
+  <!-- ═══ Aliments ═══ -->
+  <section id="view-aliments" class="view hidden">
+    <h1>Les glucides, à la française</h1>
+    <p class="sous-info">≈ 210 aliments et plats avec les portions maison. Valeurs moyennes : <strong>vérifiez l'étiquette</strong> quand vous l'avez.</p>
+    <input type="search" id="recherche-aliments" placeholder="Chercher : baguette, raclette, couscous…" autocomplete="off">
+    <div id="categories" class="chips"></div>
+    <div id="resultats-aliments" class="liste-aliments"></div>
+  </section>
+
+  <!-- ═══ Stats ═══ -->
+  <section id="view-stats" class="view hidden">
+    <div class="entete-stats">
+      <h1>Vos chiffres</h1>
+      <div class="chips">
+        <button class="chip actif" data-periode="7">7 jours</button>
+        <button class="chip" data-periode="30">30 jours</button>
+      </div>
+    </div>
+    <p class="sous-info">Statistiques purement descriptives de vos saisies — l'interprétation, c'est avec votre équipe soignante.</p>
+    <div id="cartes-stats" class="cartes-stats"></div>
+    <h2>Glucides par jour</h2>
+    <canvas id="graph-glucides" height="180"></canvas>
+    <h2>Glycémies saisies</h2>
+    <canvas id="graph-glycemies" height="180"></canvas>
+    <button id="btn-imprimer" class="btn-ghost">🖨️ Imprimer / exporter en PDF pour la consultation</button>
+  </section>
+
+  <!-- ═══ Réglages ═══ -->
+  <section id="view-reglages" class="view hidden">
+    <h1>Réglages</h1>
+
+    <div class="bloc">
+      <h2>Unité de glycémie</h2>
+      <select id="select-unite">
+        <option value="gL">g/L (France)</option>
+        <option value="mgdl">mg/dL</option>
+        <option value="mmol">mmol/L (Belgique, Suisse, Canada)</option>
+      </select>
+    </div>
+
+    <div class="bloc">
+      <h2>Sauvegarde</h2>
+      <p class="sous-info">Vos données n'existent que sur cet appareil : exportez une sauvegarde régulièrement (fichier JSON, réimportable ici).</p>
+      <div class="rangee-boutons">
+        <button id="btn-export" class="btn">⬇️ Exporter mes données</button>
+        <label class="btn btn-ghost" for="input-import">⬆️ Importer une sauvegarde</label>
+        <input type="file" id="input-import" accept="application/json" class="hidden">
+      </div>
+    </div>
+
+    <div class="bloc">
+      <h2>Tout effacer</h2>
+      <p class="sous-info">Supprime définitivement toutes vos saisies de cet appareil.</p>
+      <button id="btn-effacer" class="btn btn-danger">Effacer toutes mes données</button>
+    </div>
+
+    <div class="bloc apropos">
+      <h2>À propos</h2>
+      <p><strong>Diavie</strong> — journal & glucides du quotidien, <span id="version"></span>.</p>
+      <p>Diavie n'est pas un dispositif médical : l'app enregistre et restitue vos saisies, elle n'interprète rien et ne donne aucun conseil de traitement. Elle ne remplace jamais votre équipe soignante. En cas de malaise ou d'urgence : <strong>15</strong> (France) ou <strong>112</strong>.</p>
+      <p>Vos données restent sur cet appareil. Le scan de code-barres interroge la base collaborative Open Food Facts avec le seul numéro du code. <a href="/confidentialite/">Politique de confidentialité</a> · <a href="/">Le site et les guides</a></p>
+    </div>
+  </section>
+</main>
+
+<nav class="tabbar">
+  <button class="tab actif" data-vue="journal">📔<span>Journal</span></button>
+  <button class="tab" data-vue="aliments">🥖<span>Aliments</span></button>
+  <button class="tab" data-vue="stats">📈<span>Stats</span></button>
+  <button class="tab" data-vue="reglages">⚙️<span>Réglages</span></button>
+</nav>
+
+<!-- ═══ Dialogues ═══ -->
+
+<dialog id="dlg-bienvenue">
+  <h2>Bienvenue 👋</h2>
+  <p><strong>Diavie</strong> vous aide à suivre repas, glucides et glycémies — simplement.</p>
+  <ul class="liste-points">
+    <li>🔒 <strong>100 % privé</strong> : vos données restent sur cet appareil, sans compte, sans serveur.</li>
+    <li>🥖 Les glucides des vrais plats français, avec les portions maison.</li>
+    <li>⚕️ Diavie n'est <strong>pas un dispositif médical</strong> : aucune interprétation, aucun conseil de dose. Votre traitement, c'est avec votre équipe soignante.</li>
+  </ul>
+  <p class="sous-info">Pensez à exporter une sauvegarde de temps en temps (Réglages) : si les données du navigateur sont effacées, le journal l'est aussi.</p>
+  <div class="rangee-boutons"><button id="btn-bienvenue-ok" class="btn">C'est compris, on y va</button></div>
+</dialog>
+
+<dialog id="dlg-repas">
+  <h2>Ajouter un repas</h2>
+  <div class="champ">
+    <label for="repas-moment">Moment</label>
+    <select id="repas-moment">
+      <option value="petit-dej">Petit-déjeuner</option>
+      <option value="dejeuner">Déjeuner</option>
+      <option value="diner">Dîner</option>
+      <option value="collation">Collation</option>
+    </select>
+  </div>
+  <div class="champ">
+    <label for="repas-recherche">Ajouter un aliment</label>
+    <input type="search" id="repas-recherche" placeholder="baguette, riz, pomme…" autocomplete="off">
+    <div id="repas-resultats" class="resultats-inline"></div>
+    <button id="btn-scan" class="btn-ghost" type="button">📷 Scanner un code-barres</button>
+  </div>
+  <div id="repas-items" class="repas-items"></div>
+  <details class="ajout-libre">
+    <summary>Ajout libre (je connais les glucides)</summary>
+    <div class="rangee">
+      <input type="text" id="libre-nom" placeholder="Nom (ex : part de gâteau)">
+      <input type="number" id="libre-glucides" placeholder="g de glucides" min="0" max="500" inputmode="decimal">
+      <button id="btn-libre-ajouter" class="btn-ghost" type="button">Ajouter</button>
+    </div>
+  </details>
+  <p class="total-dialogue">Total : <strong id="repas-total">0 g</strong> de glucides <span class="sous-info">(estimation)</span></p>
+  <div class="rangee-boutons">
+    <button class="btn-ghost" data-fermer>Annuler</button>
+    <button id="btn-repas-enregistrer" class="btn">Enregistrer</button>
+  </div>
+</dialog>
+
+<dialog id="dlg-glycemie">
+  <h2>Ajouter une glycémie</h2>
+  <div class="champ">
+    <label for="gly-valeur">Valeur (<span id="gly-unite-label">g/L</span>)</label>
+    <input type="number" id="gly-valeur" step="any" min="0" inputmode="decimal" placeholder="ex : 1,15">
+  </div>
+  <div class="champ">
+    <label for="gly-contexte">Contexte</label>
+    <select id="gly-contexte">
+      <option value="a-jeun">À jeun</option>
+      <option value="avant-repas">Avant repas</option>
+      <option value="apres-repas">Après repas</option>
+      <option value="coucher">Au coucher</option>
+      <option value="autre" selected>Autre / dans la journée</option>
+    </select>
+  </div>
+  <p id="gly-avertissement" class="sous-info hidden">Valeur inhabituelle pour cette unité — vérifiez la saisie et l'unité choisie (Réglages).</p>
+  <div class="rangee-boutons">
+    <button class="btn-ghost" data-fermer>Annuler</button>
+    <button id="btn-gly-enregistrer" class="btn">Enregistrer</button>
+  </div>
+</dialog>
+
+<dialog id="dlg-activite">
+  <h2>Ajouter une activité</h2>
+  <div class="champ"><label for="act-label">Activité</label><input type="text" id="act-label" placeholder="marche, vélo, ménage sportif…"></div>
+  <div class="champ"><label for="act-minutes">Durée (minutes)</label><input type="number" id="act-minutes" min="1" max="1440" inputmode="numeric" placeholder="30"></div>
+  <div class="rangee-boutons">
+    <button class="btn-ghost" data-fermer>Annuler</button>
+    <button id="btn-act-enregistrer" class="btn">Enregistrer</button>
+  </div>
+</dialog>
+
+<dialog id="dlg-note">
+  <h2>Ajouter une note</h2>
+  <div class="champ"><textarea id="note-texte" rows="4" placeholder="Ce que vous voulez retenir de ce moment…"></textarea></div>
+  <div class="rangee-boutons">
+    <button class="btn-ghost" data-fermer>Annuler</button>
+    <button id="btn-note-enregistrer" class="btn">Enregistrer</button>
+  </div>
+</dialog>
+
+<dialog id="dlg-scan">
+  <h2>Scanner un code-barres</h2>
+  <video id="scan-video" playsinline muted class="hidden"></video>
+  <p id="scan-statut" class="sous-info">Initialisation…</p>
+  <div class="champ">
+    <label for="scan-code">Ou saisissez le code-barres</label>
+    <div class="rangee">
+      <input type="text" id="scan-code" inputmode="numeric" placeholder="ex : 3017620422003">
+      <button id="btn-scan-chercher" class="btn-ghost" type="button">Chercher</button>
+    </div>
+  </div>
+  <div id="scan-resultat" class="hidden">
+    <p><strong id="scan-nom"></strong><br><span id="scan-glucides"></span> <span class="sous-info">pour 100 g — source Open Food Facts</span></p>
+    <button id="btn-scan-utiliser" class="btn" type="button">Ajouter au repas</button>
+  </div>
+  <div class="rangee-boutons"><button class="btn-ghost" data-fermer>Fermer</button></div>
+</dialog>
+
+<!-- Rapport imprimable (visible uniquement à l'impression) -->
+<section id="rapport" aria-hidden="true"></section>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

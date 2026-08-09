@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Diavie">
+  <path d="M32 6C32 6 12 28 12 41a20 20 0 0 0 40 0C52 28 32 6 32 6Z" fill="#E2725B"/>
+  <path d="M32 14c-4.5 6-14 17.5-14 27a14 14 0 0 0 5 10.7C21.6 42 27 30 32 23.5 37 30 42.4 42 41 51.7A14 14 0 0 0 46 41c0-9.5-9.5-21-14-27Z" fill="#FAF7F2" opacity=".28"/>
+  <circle cx="38.5" cy="44" r="5.5" fill="#FAF7F2"/>
+</svg>

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}} — {{SITE_NAME}}</title>
+  <meta name="description" content="{{DESCRIPTION}}">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <link rel="stylesheet" href="/css/site.css">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="{{CANONICAL}}">
+  <meta property="og:site_name" content="{{SITE_NAME}}">
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav wrap">
+    <a class="brand" href="/"><img src="/logo.svg" alt="" width="28" height="28"> {{SITE_NAME}}</a>
+    <div class="nav-links">
+      <a href="/blog/">Articles</a>
+      <a href="/kit-90-jours/">Kit 90 jours</a>
+      <a href="/app/" class="btn btn-small">L'app</a>
+    </div>
+  </nav>
+</header>
+
+<main class="wrap page">
+{{HEADER_EXTRA}}
+<article class="prose">
+{{CONTENT}}
+</article>
+{{FOOTER_EXTRA}}
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p><strong>{{SITE_NAME}}</strong> — {{TAGLINE}}</p>
+    <p class="disclaimer">{{SITE_NAME}} fournit de l'information et des outils d'organisation. Ce n'est pas un dispositif médical et cela ne remplace jamais l'avis de votre équipe soignante. En cas de malaise ou d'urgence, appelez le 15 (France) ou le 112.</p>
+    <p class="footer-links"><a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Confidentialité</a> · <a href="/#newsletter">Newsletter</a></p>
+  </div>
+</footer>
+</body>
+</html>
