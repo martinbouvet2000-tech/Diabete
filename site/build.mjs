@@ -9,6 +9,11 @@ const SITE = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.dirname(SITE)
 const DIST = path.join(SITE, 'dist')
 
+// Surcharges d'environnement pour les déploiements en sous-chemin (GitHub Pages) :
+//   PAGES_BASE="/Diabete" SITE_URL="https://<user>.github.io/Diabete" node site/build.mjs
+const BASE = (process.env.PAGES_BASE || '').replace(/\/$/, '')
+const SITE_URL = (process.env.SITE_URL || config.siteUrl).replace(/\/$/, '')
+
 // ---------- Markdown (sous-ensemble maîtrisé) ----------
 
 function escapeHtml(s) {
@@ -139,12 +144,12 @@ async function renderPage(layout, { meta, body, urlPath }) {
   let html = applyTokens(layout, {
     TITLE: escapeHtml(meta.title),
     DESCRIPTION: escapeHtml(meta.description || config.description),
-    CANONICAL: config.siteUrl + urlPath,
+    CANONICAL: SITE_URL + urlPath,
     CONTENT: mdToHtml(body),
     HEADER_EXTRA: headerExtra,
     FOOTER_EXTRA: meta.noindex ? '' : `<p class="prose" style="margin-top:2.5rem"><a href="/blog/">← Tous les articles</a> · <a href="/#newsletter">Recevoir la newsletter</a></p>`,
     SITE_NAME: config.siteName,
-    SITE_URL: config.siteUrl,
+    SITE_URL: SITE_URL,
     TAGLINE: config.tagline,
   })
   if (meta.noindex) html = html.replace('</head>', '  <meta name="robots" content="noindex">\n</head>')
@@ -226,13 +231,13 @@ async function main() {
       .replace(/ action="\/merci\/" data-netlify="true" netlify-honeypot="bot-field"/, ` action="${config.formAction}" method="POST"`)
       .replace(/<input type="hidden" name="form-name" value="newsletter">\s*/, '')
   }
-  await writeFile(idxFile, applyTokens(idx, { SITE_NAME: config.siteName, SITE_URL: config.siteUrl, TAGLINE: config.tagline, DESCRIPTION: config.description }))
+  await writeFile(idxFile, applyTokens(idx, { SITE_NAME: config.siteName, SITE_URL: SITE_URL, TAGLINE: config.tagline, DESCRIPTION: config.description }))
 
   // 6. Tokens sur les pages statiques restantes (merci…)
   const merciFile = path.join(DIST, 'merci', 'index.html')
   try {
     const merci = await readFile(merciFile, 'utf8')
-    await writeFile(merciFile, applyTokens(merci, { SITE_NAME: config.siteName, SITE_URL: config.siteUrl, TAGLINE: config.tagline }))
+    await writeFile(merciFile, applyTokens(merci, { SITE_NAME: config.siteName, SITE_URL: SITE_URL, TAGLINE: config.tagline }))
   } catch {}
 
   // 7. App copiée dans /app
@@ -249,16 +254,54 @@ async function main() {
     }
   }
 
-  // 8. Sitemap + robots
+  // 8. Déploiement en sous-chemin (GitHub Pages) : préfixer les URLs absolues
+  if (BASE) await appliquerBase()
+
+  // 9. Sitemap + robots
   const today = new Date().toISOString().slice(0, 10)
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls
-    .map((u) => `  <url><loc>${config.siteUrl}${u}</loc><lastmod>${today}</lastmod></url>`)
+    .map((u) => `  <url><loc>${SITE_URL}${u}</loc><lastmod>${today}</lastmod></url>`)
     .join('\n')}\n</urlset>\n`
   await writeFile(path.join(DIST, 'sitemap.xml'), sitemap)
-  await writeFile(path.join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${config.siteUrl}/sitemap.xml\n`)
+  await writeFile(path.join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${SITE_URL}/sitemap.xml\n`)
 
-  console.log(`✅ Build OK — ${urls.length} URL(s) dans ${path.relative(ROOT, DIST)}/`)
+  console.log(`✅ Build OK — ${urls.length} URL(s) dans ${path.relative(ROOT, DIST)}/${BASE ? ` (base : ${BASE})` : ''}`)
   for (const u of urls) console.log('   ' + u)
+}
+
+// Réécrit les URLs absolues (href/src/action commençant par « / ») avec le préfixe
+// BASE dans tout le HTML généré, adapte les liens du site dans l'app, et remplace
+// le formulaire Netlify (inopérant hors Netlify) par une note honnête.
+async function appliquerBase() {
+  const htmls = []
+  async function collecter(dir) {
+    for (const entree of await readdir(dir, { withFileTypes: true })) {
+      const p = path.join(dir, entree.name)
+      if (entree.isDirectory()) await collecter(p)
+      else if (entree.name.endsWith('.html')) htmls.push(p)
+    }
+  }
+  await collecter(DIST)
+  for (const f of htmls) {
+    let c = await readFile(f, 'utf8')
+    c = c
+      .replaceAll('href="/', `href="${BASE}/`)
+      .replaceAll('src="/', `src="${BASE}/`)
+      .replaceAll('action="/', `action="${BASE}/`)
+    if (!config.formAction) {
+      c = c.replace(
+        /<form name="newsletter"[\s\S]*?<\/form>/,
+        `<p class="badge-prive">📬 L'inscription newsletter s'activera avec l'hébergement définitif (Netlify). En attendant, l'app et tous les guides sont accessibles librement.</p>`
+      )
+    }
+    await writeFile(f, c)
+  }
+  const appJs = path.join(DIST, 'app', 'js', 'app.js')
+  try {
+    let js = await readFile(appJs, 'utf8')
+    js = js.replaceAll("'/blog/", `'${BASE}/blog/`).replaceAll("'/kit-90-jours/'", `'${BASE}/kit-90-jours/'`)
+    await writeFile(appJs, js)
+  } catch {}
 }
 
 main().catch((e) => { console.error('❌ Build échoué :', e); process.exit(1) })
