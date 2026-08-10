@@ -2,9 +2,11 @@
 # URL : https://martinbouvet2000-tech.github.io/Diabete/
 name: Déployer sur GitHub Pages
 
+# Ne se déclenche que sur main : l'environnement github-pages n'autorise
+# que la branche par défaut à déployer (les autres branches échoueraient).
 on:
   push:
-    branches: [main, claude/diabetes-app-strategy-005epn]
+    branches: [main]
   workflow_dispatch:
 
 permissions:

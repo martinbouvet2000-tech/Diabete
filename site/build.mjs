@@ -138,8 +138,9 @@ async function renderPage(layout, { meta, body, urlPath }) {
   const dateFr = meta.date
     ? new Date(meta.date + 'T12:00:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' })
     : ''
+  const minutes = Math.max(1, Math.round(body.split(/\s+/).length / 220))
   const headerExtra = meta.date || meta.statut
-    ? `<header class="article-entete"><h1>${escapeHtml(meta.title)}</h1><p class="meta">${dateFr ? `Publié le ${dateFr}` : ''}${meta.statut ? ` <span class="statut-relecture">${escapeHtml(meta.statut)}</span>` : ''}</p></header>`
+    ? `<header class="article-entete">${meta.emoji ? `<span class="article-emoji">${meta.emoji}</span>` : ''}<h1>${escapeHtml(meta.title)}</h1><p class="meta">${dateFr ? `Publié le ${dateFr}` : ''} · ${minutes} min de lecture${meta.statut ? ` <span class="statut-relecture">${escapeHtml(meta.statut)}</span>` : ''}</p></header>`
     : `<header class="article-entete"><h1>${escapeHtml(meta.title)}</h1></header>`
   let html = applyTokens(layout, {
     TITLE: escapeHtml(meta.title),

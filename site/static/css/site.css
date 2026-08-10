@@ -26,11 +26,17 @@ body {
 }
 .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
 img { max-width: 100%; }
-a { color: var(--terracotta-fonce); }
-h1, h2, h3 { line-height: 1.25; color: var(--encre); }
+a { color: var(--terracotta-fonce); transition: color .15s ease; }
+h1, h2, h3 { line-height: 1.25; color: var(--encre); text-wrap: balance; }
 h1 { font-size: 2.1rem; }
 h2 { font-size: 1.5rem; margin-top: 2.2rem; }
 h3 { font-size: 1.15rem; }
+::selection { background: #F3D9D0; }
+:focus-visible { outline: 3px solid rgba(226, 114, 91, .45); outline-offset: 2px; border-radius: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
 
 /* Header */
 .site-header { background: var(--creme); border-bottom: 1px solid var(--bord); position: sticky; top: 0; z-index: 10; }
@@ -45,14 +51,18 @@ h3 { font-size: 1.15rem; }
   display: inline-block; background: var(--terracotta); color: var(--blanc) !important;
   padding: 12px 22px; border-radius: 999px; text-decoration: none; font-weight: 600;
   border: none; font-size: 1rem; cursor: pointer;
+  transition: background .15s ease, transform .15s ease, box-shadow .15s ease;
 }
-.btn:hover { background: var(--terracotta-fonce); }
+.btn:hover { background: var(--terracotta-fonce); transform: translateY(-1px); box-shadow: 0 6px 16px rgba(200, 90, 68, .25); }
 .btn-secondaire { background: var(--sauge); }
 .btn-secondaire:hover { background: #678A6B; }
 .btn-small { padding: 8px 16px; font-size: .95rem; }
 
 /* Hero */
-.hero { padding: 64px 0 48px; text-align: center; }
+.hero {
+  padding: 64px 0 48px; text-align: center;
+  background: radial-gradient(70% 90% at 50% 0%, #FDF9F2 0%, var(--creme) 75%);
+}
 .hero h1 { font-size: clamp(2rem, 5vw, 3rem); margin: 0 0 12px; }
 .hero p.sous-titre { font-size: 1.25rem; color: var(--encre-douce); max-width: 640px; margin: 0 auto 28px; }
 .hero .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
@@ -69,13 +79,27 @@ h3 { font-size: 1.15rem; }
 .carte {
   background: var(--blanc); border: 1px solid var(--bord); border-radius: var(--radius);
   padding: 24px; box-shadow: var(--ombre);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
 }
 .carte h3 { margin-top: 0; }
 .carte p { color: var(--encre-douce); margin-bottom: 0; }
 .carte .emoji { font-size: 1.8rem; display: block; margin-bottom: 8px; }
 .carte-lien { text-decoration: none; color: inherit; display: block; }
-.carte-lien:hover .carte { border-color: var(--terracotta); }
+.carte-lien:hover .carte { border-color: var(--terracotta); transform: translateY(-3px); box-shadow: 0 10px 24px rgba(34, 48, 60, .1); }
 .carte .meta { font-size: .85rem; color: var(--encre-douce); margin: 0 0 6px; }
+
+/* Parcours par profil — chaque chemin a sa couleur */
+#par-ou-commencer .carte { border-top: 4px solid var(--bord); }
+#par-ou-commencer .carte:nth-child(1) { border-top-color: var(--terracotta); }
+#par-ou-commencer .carte:nth-child(2) { border-top-color: var(--sauge); }
+#par-ou-commencer .carte:nth-child(3) { border-top-color: var(--miel); }
+#par-ou-commencer .carte:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(34, 48, 60, .1); }
+#par-ou-commencer .emoji {
+  width: 56px; height: 56px; display: grid; place-items: center;
+  background: var(--creme); border-radius: 50%; font-size: 1.6rem; margin-bottom: 12px;
+}
+.liens-profil a { transition: padding-left .15s ease; }
+.liens-profil a:hover { padding-left: 5px; }
 
 /* App teaser */
 .app-teaser { display: grid; grid-template-columns: 1.2fr 1fr; gap: 36px; align-items: center; }
@@ -128,6 +152,16 @@ h3 { font-size: 1.15rem; }
 
 .article-entete { max-width: 720px; margin: 0 auto 8px; }
 .article-entete .meta { color: var(--encre-douce); font-size: .9rem; }
+.article-emoji {
+  width: 64px; height: 64px; display: grid; place-items: center;
+  background: var(--blanc); border: 1px solid var(--bord); border-radius: 50%;
+  font-size: 1.9rem; margin-bottom: 14px; box-shadow: var(--ombre);
+}
+.prose h2 { padding-top: 6px; }
+.prose h2::before {
+  content: ""; display: block; width: 34px; height: 4px; border-radius: 2px;
+  background: var(--terracotta); margin-bottom: 10px;
+}
 .statut-relecture {
   display: inline-block; font-size: .82rem; padding: 4px 12px; border-radius: 999px;
   background: #FBF3E2; border: 1px solid var(--miel); color: #7A5A14; margin-left: 8px;

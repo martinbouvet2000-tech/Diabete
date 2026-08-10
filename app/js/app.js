@@ -34,6 +34,17 @@ let joursAffiches = 7
 let periodeStats = 7
 let repasItems = []
 let scanEnCours = null
+let momentActif = 'dejeuner'
+let toastTimer = null
+
+// Retour visuel chaleureux après chaque action (levier d'engagement n°1 — docs/09)
+function toast(message) {
+  const el = $('#toast')
+  el.textContent = message
+  el.classList.add('visible')
+  clearTimeout(toastTimer)
+  toastTimer = setTimeout(() => el.classList.remove('visible'), 2200)
+}
 
 // ---------- Navigation ----------
 
@@ -76,7 +87,7 @@ function htmlEntree(e) {
     detail = ''
     valeur = `${e.activite.minutes} min`
   }
-  return `<div class="entree" data-id="${e.id}">
+  return `<div class="entree" data-id="${e.id}" data-type="${e.type}">
     <span class="picto">${picto}</span>
     <div class="corps"><div class="titre">${echapper(titre)} <span class="heure">· ${heure}</span></div>
     ${detail ? `<div class="detail">${echapper(detail)}</div>` : ''}</div>
@@ -126,6 +137,12 @@ function rendreGuides() {
 
 // ---------- Dialogue repas ----------
 
+function choisirMoment(moment) {
+  momentActif = moment
+  for (const c of document.querySelectorAll('#repas-moment-chips .chip'))
+    c.classList.toggle('actif', c.dataset.moment === moment)
+}
+
 function ouvrirRepas() {
   repasItems = []
   $('#repas-recherche').value = ''
@@ -133,7 +150,7 @@ function ouvrirRepas() {
   $('#libre-nom').value = ''
   $('#libre-glucides').value = ''
   const h = new Date().getHours()
-  $('#repas-moment').value = h < 11 ? 'petit-dej' : h < 15 ? 'dejeuner' : h < 18 ? 'collation' : 'diner'
+  choisirMoment(h < 11 ? 'petit-dej' : h < 15 ? 'dejeuner' : h < 18 ? 'collation' : 'diner')
   rendreRepasItems()
   $('#dlg-repas').showModal()
   $('#repas-recherche').focus()
@@ -177,12 +194,13 @@ async function enregistrerRepas() {
     ts: Date.now(),
     type: 'repas',
     repas: {
-      moment: $('#repas-moment').value,
+      moment: momentActif,
       aliments: repasItems.map((it) => ({ nom: it.nom, glucides: gluItem(it) })),
       total,
     },
   })
   $('#dlg-repas').close()
+  toast(`${MOMENTS[momentActif]} enregistré — ${total} g ✓`)
   rendreJournal()
 }
 
@@ -217,6 +235,7 @@ async function enregistrerGlycemie() {
     glycemie: { mgdl: UNITES[unite].versMgdl(valeur), saisie: valeur, unite, contexte: $('#gly-contexte').value },
   })
   $('#dlg-glycemie').close()
+  toast('Glycémie enregistrée ✓')
   rendreJournal()
 }
 
@@ -287,7 +306,10 @@ function filtrerAliments() {
           <div class="glu"><strong>${a.glup} g</strong><small>${a.g.toLocaleString('fr-FR')} g / 100 g</small></div></div>`
         )
         .join('')
-    : `<p class="vide">Aucun résultat — essayez un mot plus simple (« pain », « riz »…), ou le scan de code-barres depuis un repas.</p>`
+    : `<div class="vide">
+        <svg viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="60" cy="76" rx="40" ry="8" fill="#E6EFE7"/><circle cx="54" cy="40" r="22" fill="#fff" stroke="#E7E0D6" stroke-width="2.5"/><circle cx="54" cy="40" r="13" fill="#FBEFEA"/><path d="M70 56l16 16" stroke="#7A9E7E" stroke-width="5" stroke-linecap="round"/><path d="M47 40h14M54 33v14" stroke="#E2725B" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <p><strong>Aucun résultat par ici.</strong><br>Essayez un mot plus simple (« pain », « riz »…), ou le scan de code-barres depuis un repas.</p>
+      </div>`
 }
 
 // ---------- Stats ----------
@@ -315,6 +337,7 @@ async function exporterJSON() {
   a.download = `diavie-sauvegarde-${new Date().toISOString().slice(0, 10)}.json`
   a.click()
   URL.revokeObjectURL(a.href)
+  toast('Sauvegarde téléchargée ✓')
 }
 
 async function importerJSON(fichier) {
@@ -323,7 +346,7 @@ async function importerJSON(fichier) {
     if (data.app !== 'diavie' || !Array.isArray(data.entries)) throw new Error('format')
     const valides = data.entries.filter((e) => e && e.id && e.ts && e.type)
     const n = await db.importEntries(valides)
-    alert(`${n} entrée(s) importée(s).`)
+    toast(`${n} entrée${n > 1 ? 's' : ''} importée${n > 1 ? 's' : ''} ✓`)
     rendreJournal()
   } catch {
     alert("Ce fichier ne ressemble pas à une sauvegarde de l'app.")
@@ -382,6 +405,10 @@ function initEvenements() {
   $('#btn-voir-plus').addEventListener('click', () => { joursAffiches = 30; rendreJournal() })
 
   // Repas
+  $('#repas-moment-chips').addEventListener('click', (ev) => {
+    const chip = ev.target.closest('.chip')
+    if (chip) choisirMoment(chip.dataset.moment)
+  })
   $('#repas-recherche').addEventListener('input', async () => {
     await chargerAliments()
     const q = $('#repas-recherche').value
@@ -427,6 +454,7 @@ function initEvenements() {
     if (!isFinite(minutes) || minutes <= 0) return
     await db.addEntry({ id: db.newId(), ts: Date.now(), type: 'activite', activite: { label: $('#act-label').value.trim() || 'Activité', minutes } })
     $('#dlg-activite').close()
+    toast(`Activité enregistrée — ${minutes} min ✓`)
     rendreJournal()
   })
   $('#btn-note-enregistrer').addEventListener('click', async () => {
@@ -434,6 +462,7 @@ function initEvenements() {
     if (!texte) return
     await db.addEntry({ id: db.newId(), ts: Date.now(), type: 'note', note: texte })
     $('#dlg-note').close()
+    toast('Note enregistrée ✓')
     rendreJournal()
   })
 
