@@ -18,12 +18,15 @@ Le média est le moteur d'acquisition permanent (voir [01-strategie.md](01-strat
 
 ## 2. Calendrier : 50 titres prêts à produire
 
-**Déjà publiés au lancement (dans `site/content/articles/`)** :
-1. Voyager en avion avec de l'insuline : le guide complet
-2. Capteur qui se décolle : 12 solutions concrètes qui marchent
-3. Diabète au restaurant : la méthode simple pour en profiter
-4. Pieds et diabète : pourquoi c'est sérieux, et comment bien s'en occuper
-5. Le kit de survie des 90 premiers jours (page guide / lead magnet)
+**Déjà publiés au lancement (dans `site/content/articles/`)** — tous les clusters P1 sont couverts :
+1. Voyager en avion avec de l'insuline : le guide complet *(Voyage)*
+2. Capteur qui se décolle : 12 solutions concrètes qui marchent *(Matériel)*
+3. Diabète au restaurant : la méthode simple pour en profiter *(Vie sociale)*
+4. Apéro et diabète : le guide de survie avec les grammes *(Vie sociale)*
+5. Pieds et diabète : pourquoi c'est sérieux, et comment bien s'en occuper *(Corps & prévention)*
+6. Les yeux et le diabète : le rendez-vous à ne jamais sauter *(Corps & prévention)*
+7. Mon père / ma mère est diabétique : aider sans braquer *(Aidants & famille)*
+8. Le kit de survie des 90 premiers jours (page guide / lead magnet) *(Nouveaux diagnostiqués)*
 
 **File de production (2/semaine)** — titres validés par cluster :
 

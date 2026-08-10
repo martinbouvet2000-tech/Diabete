@@ -21,8 +21,8 @@ const GUIDES = {
     ["Pieds et diabète : bien s'en occuper", '/blog/pieds-et-diabete/'],
   ],
   proche: [
-    ["Aider sans surveiller : les pieds, mode d'emploi", '/blog/pieds-et-diabete/'],
-    ['Le kit des 90 premiers jours (à partager)', '/kit-90-jours/'],
+    ['Aider un parent diabétique sans le braquer', '/blog/aider-un-parent-diabetique/'],
+    ["Les pieds : aider sans surveiller", '/blog/pieds-et-diabete/'],
   ],
   decouverte: [
     ['Le kit des 90 premiers jours', '/kit-90-jours/'],
