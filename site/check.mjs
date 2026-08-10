@@ -33,6 +33,7 @@ await checkJs(path.join(ROOT, 'app', 'sw.js'))
 
 // 2. Scripts du site
 for (const f of ['build.mjs', 'config.mjs']) await checkJs(path.join(SITE, f))
+await checkJs(path.join(SITE, 'static', 'js', 'site.js'))
 
 // 3. JSON aliments
 try {

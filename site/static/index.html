@@ -12,6 +12,7 @@
   <meta property="og:description" content="{{DESCRIPTION}}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{SITE_URL}}/">
+  <script src="/js/site.js" defer></script>
 </head>
 <body>
 <header class="site-header">
@@ -33,12 +34,14 @@
       <h1>Le quotidien avec le diabète, <span class="surligne">en plus simple</span>.</h1>
       <p class="sous-titre">Des guides concrets, les glucides des vrais plats français, et un journal privé qui reste sur votre appareil. Sans jargon, sans jugement, sans blouse blanche.</p>
       <div class="cta-row">
-        <a class="btn" href="/app/">Essayer l'app gratuite</a>
+        <a class="btn btn-fleche" href="/app/">Essayer l'app gratuite</a>
         <a class="btn btn-secondaire" href="/kit-90-jours/">📦 Le kit des 90 jours</a>
       </div>
       <p class="note">Gratuit, sans compte. Vos données de santé ne quittent jamais votre appareil.</p>
     </div>
     <div class="hero-visuel" aria-hidden="true">
+      <span class="flotteur flotteur-a">🥐 Croissant · 28 g</span>
+      <span class="flotteur flotteur-b">🏃 Marche · 40 min</span>
       <div class="telephone">
         <span class="telephone-ilot"></span>
         <div class="telephone-ecran">
@@ -56,7 +59,7 @@
 </section>
 
 <section class="wrap">
-  <div class="bande-chiffres" aria-label="Diavie en chiffres">
+  <div class="bande-chiffres reveal" aria-label="Diavie en chiffres">
     <div><strong>207</strong><span>aliments français chiffrés</span></div>
     <div><strong>7</strong><span>guides du quotidien</span></div>
     <div><strong>&lt;&nbsp;10&nbsp;s</strong><span>pour noter un repas</span></div>
@@ -68,7 +71,7 @@
   <h2 class="section-titre">Par où commencer ?</h2>
   <p class="section-sous-titre">Le diabète de type 1, le type 2 et le rôle de proche sont trois quotidiens différents. Dites-nous le vôtre, on vous montre le bon chemin.</p>
   <div class="cartes">
-    <div class="carte">
+    <div class="carte reveal">
       <span class="emoji">🧭</span>
       <h3>Je vis avec un type 1</h3>
       <p class="liens-profil">
@@ -77,7 +80,7 @@
         <a href="/blog/voyager-avion-insuline/">Prendre l'avion sereinement →</a>
       </p>
     </div>
-    <div class="carte">
+    <div class="carte reveal" style="--d:.08s">
       <span class="emoji">🌱</span>
       <h3>Je vis avec un type 2</h3>
       <p class="liens-profil">
@@ -86,7 +89,7 @@
         <a href="/app/">Compter ses glucides simplement →</a>
       </p>
     </div>
-    <div class="carte">
+    <div class="carte reveal" style="--d:.16s">
       <span class="emoji">🤝</span>
       <h3>J'accompagne un proche</h3>
       <p class="liens-profil">
@@ -102,17 +105,17 @@
   <h2 class="section-titre">Vous connaissez ces moments.</h2>
   <p class="section-sous-titre">Le diabète, ce n'est pas une heure chez le médecin tous les trois mois. C'est 50 petites décisions par jour. On est là pour celles-là.</p>
   <div class="cartes">
-    <div class="carte">
+    <div class="carte reveal">
       <span class="emoji">🥖</span>
       <h3>« Il y a combien de glucides là-dedans ? »</h3>
       <p>Les applis américaines ne connaissent ni la baguette tradition, ni la raclette, ni le couscous de votre cantine. Nous, si.</p>
     </div>
-    <div class="carte">
+    <div class="carte reveal" style="--d:.08s">
       <span class="emoji">😮‍💨</span>
       <h3>« On vient de me diagnostiquer, je fais quoi ? »</h3>
       <p>L'hôpital vous a donné trois brochures et un rendez-vous dans quatre mois. Le kit 90 jours comble le trou, pas à pas.</p>
     </div>
-    <div class="carte">
+    <div class="carte reveal" style="--d:.16s">
       <span class="emoji">✈️</span>
       <h3>« Et au resto ? En voyage ? À l'apéro ? »</h3>
       <p>La vie sociale ne s'arrête pas au diagnostic. Des guides concrets pour continuer à en profiter, préparé·e et serein·e.</p>
@@ -124,7 +127,24 @@
   <div class="wrap">
     <h2 class="section-titre">L'app compagnon, gratuite et sans compte</h2>
     <p class="section-sous-titre">Tout ce qu'il faut pour suivre son quotidien — rien de ce qui juge, alerte ou complique.</p>
-    <div class="fonctions">
+    <div class="etapes reveal">
+      <div class="etape">
+        <span class="etape-numero">1</span>
+        <h3>Cherchez ou scannez</h3>
+        <p>« Raclette », « couscous », ou le code-barres du supermarché : les glucides s'affichent avec la portion maison.</p>
+      </div>
+      <div class="etape">
+        <span class="etape-numero">2</span>
+        <h3>Notez en 10 secondes</h3>
+        <p>Repas, glycémie, activité — deux taps, un merci, c'est rangé. Sur votre appareil, nulle part ailleurs.</p>
+      </div>
+      <div class="etape">
+        <span class="etape-numero">3</span>
+        <h3>Montrez à votre médecin</h3>
+        <p>Un rapport propre de vos 30 derniers jours, imprimable en un geste pour la consultation.</p>
+      </div>
+    </div>
+    <div class="fonctions reveal">
       <div class="fonction">
         <span class="fonction-icone icone-terracotta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7V5.5A1.5 1.5 0 0 1 5.5 4H7M17 4h1.5A1.5 1.5 0 0 1 20 5.5V7M20 17v1.5a1.5 1.5 0 0 1-1.5 1.5H17M7 20H5.5A1.5 1.5 0 0 1 4 18.5V17M7.5 8.5v7M10.5 8.5v7M13.5 8.5v7M16.5 8.5v7"/></svg></span>
         <h3>Les plats français, chiffrés</h3>
@@ -155,6 +175,13 @@
   <p class="section-sous-titre">Écrits comme on parle à un ami — avec les chiffres, les checklists et les vraies astuces de la communauté.</p>
   <div class="cartes">
 <!--ARTICLES_RECENTS-->
+  </div>
+</section>
+
+<section class="mission reveal">
+  <div class="wrap">
+    <p class="mission-citation">« Diavie est né d'un fils qui voulait aider son père. On le construit <em>avec</em> les patients, pour les 89 jours qu'on vit entre deux consultations. »</p>
+    <p class="mission-signature">— L'équipe Diavie</p>
   </div>
 </section>
 
@@ -190,9 +217,40 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <p><strong>{{SITE_NAME}}</strong> — {{TAGLINE}}</p>
-    <p class="disclaimer">{{SITE_NAME}} fournit de l'information et des outils d'organisation. Ce n'est pas un dispositif médical et cela ne remplace jamais l'avis de votre équipe soignante. En cas de malaise ou d'urgence, appelez le 15 (France) ou le 112.</p>
-    <p class="footer-links"><a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Confidentialité</a> · <a href="/blog/">Tous les articles</a></p>
+    <div class="pied-grille">
+      <div>
+        <p class="pied-logo">🩸 {{SITE_NAME}}</p>
+        <p>{{TAGLINE}}</p>
+        <p class="disclaimer">{{SITE_NAME}} fournit de l'information et des outils d'organisation — ce n'est pas un dispositif médical et cela ne remplace jamais votre équipe soignante. En cas d'urgence : 15 (France) ou 112.</p>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <ul>
+          <li><a href="/blog/diabete-au-restaurant/">Au restaurant</a></li>
+          <li><a href="/blog/apero-diabete/">À l'apéro</a></li>
+          <li><a href="/blog/pieds-et-diabete/">Prendre soin de ses pieds</a></li>
+          <li><a href="/blog/">Tous les guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Par profil</h4>
+        <ul>
+          <li><a href="/blog/capteur-qui-se-decolle/">Type 1 : le capteur</a></li>
+          <li><a href="/kit-90-jours/">Type 2 : le kit 90 jours</a></li>
+          <li><a href="/blog/aider-un-parent-diabetique/">Proches : aider sans braquer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Le projet</h4>
+        <ul>
+          <li><a href="/app/">L'application</a></li>
+          <li><a href="/#newsletter">La newsletter</a></li>
+          <li><a href="/mentions-legales/">Mentions légales</a></li>
+          <li><a href="/confidentialite/">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="pied-bas"><span>Fait en France, avec les patients.</span><span>Vos données de santé restent sur votre appareil.</span></p>
   </div>
 </footer>
 </body>

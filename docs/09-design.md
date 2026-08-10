@@ -53,6 +53,22 @@ Les générateurs d'apps modernes (Base44, etc.) ont imposé un niveau de finiti
 6. **Rythme de sections** : alternance fond crème / fond sauge pâle, 60 px d'air, une idée par section.
 7. Ce qu'on refuse du genre : logos de confiance bidon, témoignages inventés, compteurs gonflés — en santé, un seul mensonge visible coûte la marque.
 
+## 4 ter. La couche « standard mondial » (Stripe / Linear / Apple) — notre routine
+
+Au-dessus du craft app-builder, les meilleurs sites du monde ajoutent une couche signature. La nôtre, appliquée au site et réutilisable partout — toujours en zéro dépendance :
+
+1. **Voix typographique** : serif de caractère (pile système `Iowan Old Style / Palatino / Georgia`) sur les grands titres et citations, sans-serif sur l'interface — l'identité éditoriale sans le coût d'une webfont.
+2. **Grain photographique** subtil sur toute la page (SVG `feTurbulence` en data-URI, opacité ~3 %) — la texture qui sépare un site « propre » d'un site « matière ».
+3. **Lumière** : voiles radiaux terracotta/sauge à 7–9 % d'opacité dans le héros — de la profondeur, jamais de néon.
+4. **Révélations au défilement** : IntersectionObserver natif (~15 lignes), montée douce `cubic-bezier(.16,1,.3,1)` avec délais échelonnés — dégradable (sans JS, tout est visible) et coupée par `prefers-reduced-motion`.
+5. **Parallaxe du produit** : le téléphone du héros s'incline sous le curseur (rotateX/Y ≤ 9°, souris uniquement) + flotteurs animés autour.
+6. **Narration en étapes** : « 1-2-3 » reliés par un trait pointillé — le lecteur comprend le produit sans le lire.
+7. **Le moment de contraste** : une bande sombre plein écran avec la citation-mission en serif italique — chez nous, l'histoire vraie du fondateur, pas un faux témoignage.
+8. **Footer magistral** : marque en serif + trois colonnes de navigation + ligne de valeurs — la page se termine comme elle a commencé, avec intention.
+9. **Entête vivante** : translucide au sommet, ombre et filet dès le premier scroll.
+
+Chaque nouvel écran du projet passe par cette grille de lecture : voix typo, matière, lumière, mouvement, narration, contraste, fin de page.
+
 ## 5. Anti-patterns (vus partout dans les vaults, interdits chez nous)
 
 - Rouge alarmiste et jauges « danger » sur des données de santé → anxiogène ET requalifiant en interprétation médicale.
