@@ -13,6 +13,18 @@ Pourquoi c'est le bon choix de départ :
 
 Contreparties assumées (et traitées) : pas de synchronisation multi-appareils (→ export/import JSON fourni comme sauvegarde manuelle) ; perte possible si l'utilisateur nettoie son navigateur (→ rappels de sauvegarde dans l'UI). La synchronisation chiffrée arrive en v1 **quand** la traction le justifie.
 
+### Connexion aux capteurs de glycémie — la trajectoire décidée (août 2026)
+
+La demande n°1 prévisible (« connecter mon FreeStyle Libre / Dexcom ») a un chemin réaliste en trois marches — et deux interdits :
+
+| Marche | Quoi | Pourquoi c'est la bonne porte |
+|---|---|---|
+| **1. v0.x — import de fichier** | L'utilisateur télécharge lui-même son historique depuis LibreView / Dexcom Clarity (export CSV prévu pour les patients) et l'importe dans l'app ; parsing **local**, affichage rétrospectif dans le journal et les stats | Zéro partenariat requis, zéro donnée qui transite par nous, cohérent local-first ; fonctionnalité « bêta » car les formats d'export changent |
+| **2. v2 — Apple Santé / Health Connect** | L'app mobile (Expo) lit la glycémie que l'app du capteur écrit dans Apple Santé (iOS) / Health Connect (Android), avec la permission explicite de l'utilisateur | La **seule voie officielle sans accord d'Abbott/Dexcom** ; disponibilité variable selon capteur/plateforme/pays → la saisie manuelle reste toujours le chemin par défaut. Inaccessible depuis une PWA web — c'est l'argument n°1 pour l'app mobile v2 |
+| **3. Étage 4 — temps réel** | Affichage continu, alertes | **Dispositif médical** (fonction de monitoring/alarme) → uniquement après marquage CE ([02-reglementation.md](02-reglementation.md) §2 et §6) |
+
+Les deux interdits : **jamais d'API non officielle** (scraping LibreLinkUp & co — fragile, contraire aux CGU des fabricants, indigne d'une marque de confiance santé), et **jamais d'interprétation** des valeurs importées tant qu'on n'est pas un DM : l'import automatise la saisie, rien de plus. Bonus crédibilité T1 : accepter aussi l'import **Nightscout** (leurs propres données, leur propre serveur) — voir §9.
+
 ## 2. Trajectoire
 
 | Version | Contenu | Déclencheur pour y aller |
