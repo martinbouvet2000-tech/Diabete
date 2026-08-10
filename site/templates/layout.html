@@ -13,6 +13,7 @@
   <meta property="og:type" content="article">
   <meta property="og:url" content="{{CANONICAL}}">
   <meta property="og:site_name" content="{{SITE_NAME}}">
+  <script src="/js/site.js" defer></script>
 </head>
 <body>
 <header class="site-header">
@@ -36,9 +37,40 @@
 
 <footer class="site-footer">
   <div class="wrap">
-    <p><strong>{{SITE_NAME}}</strong> — {{TAGLINE}}</p>
-    <p class="disclaimer">{{SITE_NAME}} fournit de l'information et des outils d'organisation. Ce n'est pas un dispositif médical et cela ne remplace jamais l'avis de votre équipe soignante. En cas de malaise ou d'urgence, appelez le 15 (France) ou le 112.</p>
-    <p class="footer-links"><a href="/mentions-legales/">Mentions légales</a> · <a href="/confidentialite/">Confidentialité</a> · <a href="/#newsletter">Newsletter</a></p>
+    <div class="pied-grille">
+      <div>
+        <p class="pied-logo">🩸 {{SITE_NAME}}</p>
+        <p>{{TAGLINE}}</p>
+        <p class="disclaimer">{{SITE_NAME}} fournit de l'information et des outils d'organisation — ce n'est pas un dispositif médical et cela ne remplace jamais votre équipe soignante. En cas d'urgence : 15 (France) ou 112.</p>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <ul>
+          <li><a href="/blog/diabete-au-restaurant/">Au restaurant</a></li>
+          <li><a href="/blog/apero-diabete/">À l'apéro</a></li>
+          <li><a href="/blog/pieds-et-diabete/">Prendre soin de ses pieds</a></li>
+          <li><a href="/blog/">Tous les guides</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Par profil</h4>
+        <ul>
+          <li><a href="/blog/capteur-qui-se-decolle/">Type 1 : le capteur</a></li>
+          <li><a href="/kit-90-jours/">Type 2 : le kit 90 jours</a></li>
+          <li><a href="/blog/aider-un-parent-diabetique/">Proches : aider sans braquer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Le projet</h4>
+        <ul>
+          <li><a href="/app/">L'application</a></li>
+          <li><a href="/#newsletter">La newsletter</a></li>
+          <li><a href="/mentions-legales/">Mentions légales</a></li>
+          <li><a href="/confidentialite/">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="pied-bas"><span>Fait en France, avec les patients.</span><span>Vos données de santé restent sur votre appareil.</span></p>
   </div>
 </footer>
 </body>
