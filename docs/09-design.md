@@ -41,6 +41,18 @@ La v0 applique déjà l'essentiel : palette chaude non médicale (crème/terraco
 6. **Piste mascotte** : la goutte du logo, animée avec parcimonie — à **tester en interviews d'abord** (dignité pour les T2 seniors ; mySugr prouve que ça marche, Gentler Streak prouve que la subtilité gagne).
 7. **Typographie identitaire** : à l'achat du nom définitif (v1) — pile système d'ici là.
 
+## 4 bis. Le standard « app-builder » (Base44 & co) — les techniques qu'on s'approprie
+
+Les générateurs d'apps modernes (Base44, etc.) ont imposé un niveau de finition « startup » reconnaissable. On s'approprie **les techniques**, jamais le look SaaS générique (notre chaleur santé est notre différenciation). La boîte à outils, appliquée sur la landing et réutilisable sur tout futur écran :
+
+1. **Héros en deux colonnes** : message à gauche (badge d'accroche → titre display à tracking serré → sous-titre → 2 CTA → réassurance), **produit montré** à droite.
+2. **Le produit dans un appareil** : téléphone dessiné en CSS pur (aucune image, net à toutes les densités) avec un vrai extrait de l'app dedans — y compris le toast de confirmation, qui « vend » la micro-interaction.
+3. **Mot-clé surligné au marqueur** (gradient de fond interrompu) — un seul par page.
+4. **Bandeau de chiffres honnêtes** chevauchant le héros (marge négative) — que des faits vérifiables, jamais de « +10 000 utilisateurs » inventés.
+5. **Grille de fonctionnalités** à icônes SVG maison dans des pastilles teintées de la palette — pas d'emoji système sur les surfaces marketing.
+6. **Rythme de sections** : alternance fond crème / fond sauge pâle, 60 px d'air, une idée par section.
+7. Ce qu'on refuse du genre : logos de confiance bidon, témoignages inventés, compteurs gonflés — en santé, un seul mensonge visible coûte la marque.
+
 ## 5. Anti-patterns (vus partout dans les vaults, interdits chez nous)
 
 - Rouge alarmiste et jauges « danger » sur des données de santé → anxiogène ET requalifiant en interprétation médicale.
