@@ -2,7 +2,7 @@
 // Les données du journal sont en IndexedDB et ne passent jamais par le réseau.
 // Incrémenter à CHAQUE modification des fichiers de l'app : c'est ce qui
 // déclenche le remplacement du cache chez les visiteurs déjà venus.
-const VERSION = 'diavie-v0.2.0'
+const VERSION = 'diavie-v0.3.0'
 const RESSOURCES = [
   './',
   'index.html',
