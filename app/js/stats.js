@@ -50,20 +50,32 @@ function prepCanvas(canvas) {
   const ctx = canvas.getContext('2d')
   ctx.scale(dpr, dpr)
   ctx.clearRect(0, 0, largeur, hauteur)
-  ctx.font = '11px system-ui'
+  ctx.font = '12px system-ui'
   return { ctx, largeur, hauteur }
+}
+
+// Barre à sommet arrondi (repli net si roundRect n'existe pas)
+function barreArrondie(ctx, x, y, l, h) {
+  const r = Math.min(6, l / 2, h)
+  if (ctx.roundRect) {
+    ctx.beginPath()
+    ctx.roundRect(x, y, l, h, [r, r, 0, 0])
+    ctx.fill()
+  } else {
+    ctx.fillRect(x, y, l, h)
+  }
 }
 
 export function dessinerBarresGlucides(canvas, jours) {
   const { ctx, largeur, hauteur } = prepCanvas(canvas)
-  const marge = { haut: 14, bas: 24, gauche: 34, droite: 8 }
+  const marge = { haut: 20, bas: 24, gauche: 34, droite: 8 }
   const zoneL = largeur - marge.gauche - marge.droite
   const zoneH = hauteur - marge.haut - marge.bas
   const max = Math.max(60, ...jours.map((j) => j.glucides))
   const pas = zoneL / jours.length
 
-  ctx.strokeStyle = '#E7E0D6'
-  ctx.fillStyle = '#4A5A68'
+  ctx.strokeStyle = '#F0EAE0'
+  ctx.fillStyle = '#8A97A3'
   for (const t of [0, Math.round(max / 2), max]) {
     const y = marge.haut + zoneH - (t / max) * zoneH
     ctx.beginPath()
@@ -75,10 +87,17 @@ export function dessinerBarresGlucides(canvas, jours) {
   jours.forEach((j, i) => {
     const h = (j.glucides / max) * zoneH
     const x = marge.gauche + i * pas + pas * 0.15
+    const l = pas * 0.7
     ctx.fillStyle = '#E2725B'
-    ctx.fillRect(x, marge.haut + zoneH - h, pas * 0.7, h)
+    barreArrondie(ctx, x, marge.haut + zoneH - h, l, h)
+    if (jours.length <= 7 && j.glucides > 0) {
+      ctx.fillStyle = '#C85A44'
+      ctx.textAlign = 'center'
+      ctx.fillText(String(j.glucides), x + l / 2, marge.haut + zoneH - h - 5)
+      ctx.textAlign = 'left'
+    }
     if (jours.length <= 10 || i % Math.ceil(jours.length / 8) === 0) {
-      ctx.fillStyle = '#4A5A68'
+      ctx.fillStyle = '#8A97A3'
       ctx.fillText(`${j.date.getDate()}/${j.date.getMonth() + 1}`, marge.gauche + i * pas + 2, hauteur - 8)
     }
   })
@@ -102,8 +121,8 @@ export function dessinerGlycemies(canvas, glycemies) {
   const x = (ts) => marge.gauche + (t1 === t0 ? zoneL / 2 : ((ts - t0) / (t1 - t0)) * zoneL)
   const y = (v) => marge.haut + zoneH - ((v - min) / (max - min || 1)) * zoneH
 
-  ctx.strokeStyle = '#E7E0D6'
-  ctx.fillStyle = '#4A5A68'
+  ctx.strokeStyle = '#F0EAE0'
+  ctx.fillStyle = '#8A97A3'
   for (const t of [min, (min + max) / 2, max]) {
     const yy = y(t)
     ctx.beginPath()
@@ -113,16 +132,29 @@ export function dessinerGlycemies(canvas, glycemies) {
     ctx.fillText(formatGlycemie(t).split(' ')[0], 4, yy + 4)
   }
   if (glycemies.length > 1) {
+    // Aplat très léger sous la courbe — purement esthétique, aucune zone « cible »
+    ctx.beginPath()
+    glycemies.forEach((g, i) => (i ? ctx.lineTo(x(g.ts), y(g.mgdl)) : ctx.moveTo(x(g.ts), y(g.mgdl))))
+    ctx.lineTo(x(glycemies[glycemies.length - 1].ts), marge.haut + zoneH)
+    ctx.lineTo(x(glycemies[0].ts), marge.haut + zoneH)
+    ctx.closePath()
+    ctx.fillStyle = 'rgba(122, 158, 126, .13)'
+    ctx.fill()
+
     ctx.strokeStyle = '#7A9E7E'
-    ctx.lineWidth = 1.5
+    ctx.lineWidth = 2
+    ctx.lineJoin = 'round'
     ctx.beginPath()
     glycemies.forEach((g, i) => (i ? ctx.lineTo(x(g.ts), y(g.mgdl)) : ctx.moveTo(x(g.ts), y(g.mgdl))))
     ctx.stroke()
   }
-  ctx.fillStyle = '#3E5D42'
   for (const g of glycemies) {
     ctx.beginPath()
-    ctx.arc(x(g.ts), y(g.mgdl), 3, 0, Math.PI * 2)
+    ctx.arc(x(g.ts), y(g.mgdl), 3.5, 0, Math.PI * 2)
+    ctx.fillStyle = '#3E5D42'
     ctx.fill()
+    ctx.strokeStyle = '#fff'
+    ctx.lineWidth = 1.5
+    ctx.stroke()
   }
 }

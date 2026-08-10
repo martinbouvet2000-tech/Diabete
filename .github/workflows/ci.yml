@@ -1,0 +1,27 @@
+# Vérifications sur les pull requests : syntaxe, base d'aliments, build des deux modes.
+name: Vérifications
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Syntaxe JS + base d'aliments
+        run: node site/check.mjs
+      - name: Build standard (Netlify)
+        run: node site/build.mjs
+      - name: Build en sous-chemin (GitHub Pages)
+        run: node site/build.mjs
+        env:
+          PAGES_BASE: /Diabete
+          SITE_URL: https://martinbouvet2000-tech.github.io/Diabete
