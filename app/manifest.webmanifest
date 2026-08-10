@@ -1,0 +1,14 @@
+{
+  "name": "Diavie — journal & glucides",
+  "short_name": "Diavie",
+  "description": "Journal privé et glucides des plats français. Vos données restent sur votre appareil.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "lang": "fr",
+  "background_color": "#FAF7F2",
+  "theme_color": "#FAF7F2",
+  "icons": [
+    { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}

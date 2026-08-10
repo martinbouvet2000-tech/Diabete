@@ -1,0 +1,56 @@
+# Déploiement du site + app sur GitHub Pages
+# URL : https://martinbouvet2000-tech.github.io/Diabete/
+name: Déployer sur GitHub Pages
+
+on:
+  push:
+    branches: [main, claude/diabetes-app-strategy-005epn]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-et-deployer:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Configurer Pages (activation automatique si besoin)
+        id: pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Vérifications
+        run: node site/check.mjs
+
+      - name: Build (URLs adaptées au sous-chemin Pages)
+        run: node site/build.mjs
+        env:
+          PAGES_BASE: ${{ steps.pages.outputs.base_path }}
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+
+      - name: Empaqueter pour Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/dist
+
+      - name: Déployer
+        id: deployment
+        uses: actions/deploy-pages@v4
